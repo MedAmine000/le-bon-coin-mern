@@ -26,10 +26,10 @@ const getAdById = async (req, res) => {
 // Créer une annonce
 const createAd = async (req, res) => {
     try {
-        const { title, description, category, price } = req.body;
+        const { title, description, category, price, latitude, longitude } = req.body;
 
         // Vérification des champs obligatoires
-        if (!title || !description || !category || !price) {
+        if (!title || !description || !category || !price || !latitude || !longitude) {
             return res.status(400).json({ message: "Tous les champs sont requis" });
         }
 
@@ -38,8 +38,12 @@ const createAd = async (req, res) => {
 
         // Création de l'annonce
         const newAd = await Ad.create({
-            ...req.body,
+            title,
+            description,
+            category,
+            price,
             image,
+            location: { type: "Point", coordinates: [parseFloat(longitude), parseFloat(latitude)] },
             author: req.user.id,
         });
 

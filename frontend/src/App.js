@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Ads from "./components/Ads";
 import AdDetails from "./components/AdDetails";
 import UpdateAd from "./components/UpdateAd";
+import AddAd from "./components/AddAd";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/ads/add" element={<AddAd />} />
         <Route
           path="/ads/:id"
           element={

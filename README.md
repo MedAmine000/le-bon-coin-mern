@@ -33,12 +33,12 @@ Une application MERN (MongoDB, Express, React, Node.js) inspirée de **Le Bon Co
 
 ## **Installation**
 
-1. Clonez le projet :
+Clonez le projet :
    ```bash
    git clone <votre-lien-du-dépôt>
    cd BonCoinProjet
    ```
-   
+
 Installez les dépendances pour le backend :
 
    ```bash
@@ -52,8 +52,10 @@ Créez un fichier .env dans le dossier backend et ajoutez les variables suivante
 MONGO_URI=mongodb://127.0.0.1:27017/leboncoin
 JWT_SECRET=votre_clé_secrète
 JWT_EXPIRES_IN=1d
-Lancez le serveur backend :
+
 ```
+Lancez le serveur backend :
+
 
 ```bash
 
