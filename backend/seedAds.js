@@ -3,7 +3,8 @@ const Ad = require("./models/adModel");
 const User = require("./models/userModel");
 
 // Connexion à MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/leboncoin", {
+const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/leboncoin";
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
