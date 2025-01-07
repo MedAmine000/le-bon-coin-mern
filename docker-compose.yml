@@ -1,16 +1,7 @@
-version: '3.9'
-services:
-  backend:
-    build:
-      context: ./backend
-    ports:
-      - "8080:8080"
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/leboncoin
-    depends_on:
-      - mongo
+version: "3.8"
 
-  mongo:
+services:
+  mongodb:
     image: mongo:5.0
     container_name: mongodb
     ports:
@@ -18,6 +9,25 @@ services:
     volumes:
       - mongodb_data:/data/db
 
+  backend:
+    build:
+      context: ./backend
+    container_name: boncoinprojet-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/leboncoin
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: boncoinprojet-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
 volumes:
   mongodb_data:
-     - ./data:/data/db
