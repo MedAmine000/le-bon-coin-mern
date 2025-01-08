@@ -1,0 +1,2 @@
+git commit -m "Ajout Docker pour le bfrontend"
+docker tag boncoinprojet-frontend mkorniti/boncoinprojet-frontend:v1

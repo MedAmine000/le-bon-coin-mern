@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boncoin-frontend
+  labels:
+    app: boncoin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: boncoin
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: boncoin
+        tier: frontend
+    spec:
+      containers:
+      - name: boncoin-frontend
+        image: mkorniti/boncoinprojet-frontend:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boncoin-frontend
+spec:
+  selector:
+    app: boncoin
+    tier: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort

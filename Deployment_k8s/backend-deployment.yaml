@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boncoin-backend
+  labels:
+    app: boncoin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: boncoin
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: boncoin
+        tier: backend
+    spec:
+      containers:
+      - name: boncoin-backend
+        image: mkorniti/boncoinprojet-backend:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_URL
+          value: mongodb://boncoin-mongo:27017/leboncoin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boncoin-backend
+spec:
+  selector:
+    app: boncoin
+    tier: backend
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP
